@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- action for kids patient-->
+    <record id="kids_action" model="ir.actions.act_window">
+        <field name="name">Kids</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('age', '&lt;=', 18)]</field>
+        <!--        <field name="context">{'search_default_patient_gender_male_filter':1, 'search_default_patient_name_group':1}</field>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new patient, the first step of a new management!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="hospital_kids"
+            name="Kids"
+            parent="hospital_patient_root"
+            action="kids_action"
+            sequence="20"/>
+</odoo>

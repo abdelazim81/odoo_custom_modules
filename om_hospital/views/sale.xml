@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- inherited form view-->
+    <record id="hospital_sale_form_view_inherit" model="ir.ui.view">
+        <field name="name">hospital.sale.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//field[@name='payment_term_id']" position="after">-->
+            <!--                <field name="sale_description"/>-->
+            <!--            </xpath>-->
+            <field name="payment_term_id" position="before">
+                <field name="sale_description"/>
+            </field>
+        </field>
+    </record>
+
+
+    <!--    inherited tree view-->
+    <record id="hospital_sale_tree_view_inherit" model="ir.ui.view">
+        <field name="name">hospital.sale.tree.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//field[@name='user_id']" position="after">-->
+            <!--                <field name="sale_description"/>-->
+            <!--            </xpath>-->
+            <field name="user_id" position="after">
+                <field name="sale_description"/>
+            </field>
+        </field>
+    </record>
+</odoo>

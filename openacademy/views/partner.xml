@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--form view for partner-->
+    <record model="ir.ui.view" id="partner_instructor_form_view">
+    <field name="name">partner.instructor</field>
+    <field name="model">res.partner</field>
+    <field name="priority" eval="16"/>
+     <field name="inherit_id" ref="base.view_partner_form" />
+    <field name="arch" type="xml">
+        <!-- view content: <form>, <tree>, <graph>, ... -->
+        <notebook position="inside">
+                <page string="Sessions">
+                    <group>
+                        <field  name="instructor"/>
+                        <field  name="session_ids"/>
+                    </group>
+                </page>
+        </notebook>
+    </field>
+</record>
+
+    <!-- action list for partner -->
+    <record model="ir.actions.act_window" id="contact_list_action">
+    <field name="name">Contacts</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create Your First Contact</p>
+    </field>
+</record>
+    <!-- parent menu item -->
+<menuitem id="configuration_menu" parent="main_openacademy_menue"  name="Configuration "/>
+<menuitem id="contact_menu" parent="configuration_menu"  name="Contacts " action="contact_list_action"/>
+</odoo>

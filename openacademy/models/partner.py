@@ -1,0 +1,5 @@
+from odoo import  fields, models
+class partner(models.Model):
+    _inherit = 'res.partner'
+    instructor = fields.Boolean("Instructor", default=False)
+    session_ids = fields.Many2many('openacademy.session', String="Attended Sessions", readonly=True)
