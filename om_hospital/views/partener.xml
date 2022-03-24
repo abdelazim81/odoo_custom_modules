@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <!--    inherited tree view-->
+    <record id="hospital_contacts_tree_view_inherit" model="ir.ui.view">
+        <field name="name">hospital.contact.tree.view.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="phone" position="before">
+                <field name="city" position="move"/>
+            </field>
+        </field>
+    </record>
+</odoo>

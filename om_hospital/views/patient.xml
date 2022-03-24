@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
+      <!-- server action to create new appointment-->
+    <record id="server_action_create_appointment_patient" model="ir.actions.server">
+        <field name="name">Create Appointment</field>
+        <field name="model_id" ref="om_hospital.model_create_appointment_wizard"/>
+        <field name="binding_model_id" ref="om_hospital.model_hospital_patient"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            if not record:
+                action_values = env.ref('om_hospital.create_appointment_action').sudo().read()[0]
+                action_values.update({'context': env.context})
+                action = action_values
+        </field>
+    </record>
     <!--tree view for patient model-->
     <record id="hospital_patient_tree" model="ir.ui.view">
         <field name="name">hospital.patient.tree</field>
@@ -11,6 +24,7 @@
                 <field name="name"/>
                 <field name="responsible_id"/>
                 <field name="age"/>
+                <field name="appointments_count"/>
                 <field name="gender"/>
             </tree>
         </field>
@@ -35,10 +49,20 @@
                     <button id="button_cancel" name="action_cancel" string="Cancel"
                             confirm="Are you sure that you need to cancel it ?"
                             type="object" states="draft,confirm,done"/>
-                    <field name="state" widget="statusbar"  statusbar_visible="draft,confirm,done"
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"
                     />
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_appointment_count" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <field name="appointments_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Appointments</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <field name="patient_image" widget="image" class="oe_avatar"/>
                     <div class="oe_title">
                         <h1>
                             <field name="reference" readonly="1"/>
@@ -49,12 +73,54 @@
                             <field name="name"/>
                             <field name="responsible_id"/>
                             <field name="age"/>
+                            <field name="appointments_count"/>
                         </group>
                         <group>
                             <field name="gender" invisible="context.get('hide_gender')"/>
                             <field name="note"/>
                         </group>
                     </group>
+
+                    <notebook>
+                        <page string="Appointments">
+                            <field name="appointment_ids" readonly="1">
+
+                                <tree edit="0" create="0" delete="0">
+                                    <field name="name" readonly="1" optional="show"/>
+                                    <field name="patient_id"/>
+                                    <field name="doctor_id"/>
+                                    <field name="date_appointment"/>
+                                    <field name="date_checkup" optional="show"/>
+                                    <field name="state" decoration-success="state == 'confirm' or state == 'done'"
+                                           decoration-info="state == 'draft'" widget="badge" optional="show"/>
+                                    <field name="note" optional="show"/>
+                                    <field name="age" optional="hide"/>
+                                    <field name="gender" optional="hide"/>
+                                </tree>
+
+                                <form>
+                                    <sheet>
+                                        <div class="oe_title">
+                                            <h1>
+                                                <field name="name" readonly="1"/>
+                                            </h1>
+                                        </div>
+                                        <group>
+                                            <group>
+                                                <field name="date_appointment"/>
+                                            </group>
+                                            <group>
+                                                <field name="date_checkup"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="note"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
 
                 </sheet>
                 <div class="oe_chatter">
@@ -93,8 +159,8 @@
         <field name="name">hospital.patient.Kanban</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
-            <kanban  class="o_kanban_mobile">
-<!--            <kanban default_group_by="gender" class="o_kanban_mobile">-->
+            <kanban class="o_kanban_mobile">
+                <!--            <kanban default_group_by="gender" class="o_kanban_mobile">-->
                 <field name="id"/>
                 <field name="name"/>
                 <field name="responsible_id"/>
@@ -135,7 +201,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.patient</field>
         <field name="view_mode">tree,kanban,form</field>
-<!--        <field name="context">{'search_default_patient_gender_male_filter':1, 'search_default_patient_name_group':1}</field>-->
+        <!--        <field name="context">{'search_default_patient_gender_male_filter':1, 'search_default_patient_name_group':1}</field>-->
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new patient, the first step of a new management!
@@ -151,12 +217,12 @@
     <menuitem
             id="hospital_patient_root"
             name="Patients"
-            parent="hospital_root"
-            sequence="10"/>
+            sequence="20"
+            parent="hospital_root"/>
     <menuitem
             id="hospital_patient"
             name="Patients"
             parent="hospital_patient_root"
-            action="patient_action"
-            sequence="10"/>
+            sequence="10"
+            action="patient_action"/>
 </odoo>

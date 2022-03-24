@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': "openacademy",
 
@@ -26,8 +25,8 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/views.xml',
         'views/wizard.xml',
+        'views/views.xml',
         'views/openacademy.xml',
         'views/partner.xml',
         'views/templates.xml',
@@ -38,3 +37,4 @@
         'demo/demo.xml',
     ],
 }
+# -*- coding: utf-8 -*-

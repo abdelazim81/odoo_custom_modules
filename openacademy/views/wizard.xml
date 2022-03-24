@@ -2,38 +2,37 @@
 <odoo>
 
 
-             <!--view for wizard-->
-        <record model="ir.ui.view" id="wizard_form_view">
-            <field name="name">wizard.form</field>
-            <field name="model">openacademy.wizard</field>
-            <field name="arch" type="xml">
-                    <form string="Add Attendees">
-                            <group>
-                                <field name="session_id"/>
-                                <field name="attendee_ids"/>
-                            </group>
-                        <footer>
-                            <button string="Add Attendee" class="btn btn-info" name="add_attendee"/>
-                        </footer>
-                    </form>
-            </field>
-        </record>
+    <!--view for wizard-->
+    <record model="ir.ui.view" id="wizard_form_view">
+        <field name="name">wizard.form</field>
+        <field name="model">openacademy.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Attendees">
+                <group>
+                    <field name="session_id"/>
+                    <field name="attendee_ids"/>
+                </group>
+                <footer>
+                    <button string="Add Attendee" class="btn btn-info" name="add_attendee"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <record id="launch_the_wizard" model="ir.actions.act_window">
-    <field name="name">Add Attendee</field>
-    <field name="res_model">openacademy.wizard</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-         <field name="binding_model_id" ref="model_openacademy_session"/>
-</record>
+    <record id="launch_the_wizard" model="ir.actions.act_window">
+        <field name="name">Add Attendee</field>
+        <field name="res_model">openacademy.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_form_view"/>
+        <field name="target">new</field>
+    </record>
 
 
-
-<!--    <act_window  id="lunch_wizard_form"-->
-<!--                name="Add Attendees"-->
-<!--                 binding_model="openacademy.session"-->
-<!--                res_model="openacademy.wizard"-->
-<!--                view_mode="form"-->
-<!--                target="new"-->
-<!--        />-->
+    <!--    <act_window  id="lunch_wizard_form"-->
+    <!--                name="Add Attendees"-->
+    <!--                 binding_model="openacademy.session"-->
+    <!--                res_model="openacademy.wizard"-->
+    <!--                view_mode="form"-->
+    <!--                target="new"-->
+    <!--        />-->
 </odoo>

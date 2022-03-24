@@ -19,7 +19,7 @@
             name="Male Patients"
             action="action_hospital_male"
             parent="hospital_patient_root"
-            sequence="30"/>
+            sequence="20"/>
 
     <!-- action for female patients-->
     <record id="action_hospital_female" model="ir.actions.act_window">
@@ -40,5 +40,5 @@
             name="Female Patients"
             action="action_hospital_female"
             parent="hospital_patient_root"
-            sequence="40"/>
+            sequence="30"/>
 </odoo>

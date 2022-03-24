@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "om_hospital",
+    'name': "Hospital Management System",
 
     'summary': """This is an application for Hospital management""",
     'sequence': -10,
@@ -18,12 +18,15 @@
     'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'mail'],
+    'depends': ['base', 'sale', 'mail', 'report_xlsx', 'contacts'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'data/data.xml',
+        'data/overwrite_sale_sequence.xml',
+        'wizard/create_appointment_view.xml',
+        'wizard/search_appointment_view.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/patient.xml',
@@ -31,6 +34,10 @@
         'views/patient_gender.xml',
         'views/appointment.xml',
         'views/sale.xml',
+        'views/partener.xml',
+        'views/doctor.xml',
+        'report/patient_report.xml',
+        'report/patient_report_xlsx.xml',
     ],
     'installable': True,
     'application': True,

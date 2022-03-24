@@ -196,6 +196,7 @@
     </record>
     <!--    Session menu item-->
     <menuitem id="sessions_menue" name="Sessions" parent="openacademy_menue" action="session_list_action"/>
+    <menuitem id="add_attendee_wizard" name="Add Attendee" parent="openacademy_menue" action="launch_the_wizard"/>
 
 
 </odoo>

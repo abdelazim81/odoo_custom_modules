@@ -14,8 +14,17 @@
         <record id="seq_hospital_Appointment" model="ir.sequence">
             <field name="name">Hospital Appointments</field>
             <field name="code">hospital.appointment</field>
-            <field name="prefix">APP</field>
-            <field name="padding">5</field>
+            <field name="prefix">20223</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+         <!-- Sequences for hospital.doctor -->
+        <record id="seq_hospital_Doctor" model="ir.sequence">
+            <field name="name">Hospital Doctors</field>
+            <field name="code">hospital.doctor</field>
+            <field name="prefix">DR/</field>
+            <field name="padding">3</field>
             <field name="company_id" eval="False"/>
         </record>
     </data>

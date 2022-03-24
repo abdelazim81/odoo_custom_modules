@@ -20,5 +20,5 @@
             name="Kids"
             parent="hospital_patient_root"
             action="kids_action"
-            sequence="20"/>
+            sequence="10"/>
 </odoo>
