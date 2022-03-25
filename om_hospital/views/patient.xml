@@ -19,7 +19,7 @@
         <field name="name">hospital.patient.tree</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree expand="1">
                 <field name="reference" readonly="1"/>
                 <field name="name"/>
                 <field name="responsible_id"/>

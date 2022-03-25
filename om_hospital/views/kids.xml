@@ -7,6 +7,7 @@
         <field name="res_model">hospital.patient</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="domain">[('age', '&lt;=', 18)]</field>
+        <field name="context">{'search_default_patient_gender_group':1}</field>
         <!--        <field name="context">{'search_default_patient_gender_male_filter':1, 'search_default_patient_name_group':1}</field>-->
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
