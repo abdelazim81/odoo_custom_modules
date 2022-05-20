@@ -27,9 +27,10 @@
                                     <tr>
                                         <td width="40%">
                                             <p style="text-align: center; padding-top: 10px;">
-                                                <!--                                                <img t-if="not o.patient_image"-->
-                                                <!--                                                     t-att-src="/om_hospital/static/src/img/placeholder.png" height="140"-->
-                                                <!--                                                     width="120"/>-->
+                                                <img t-if="not o.patient_image"
+                                                     t-att-src="'/web/static/img/placeholder.png'"
+                                                     height="140"
+                                                     width="120"/>
                                                 <img t-if="o.patient_image"
                                                      t-att-src="'data:image/png;base64,%s' % to_text(o.patient_image)"
                                                      height="140" width="120" border="1"/>

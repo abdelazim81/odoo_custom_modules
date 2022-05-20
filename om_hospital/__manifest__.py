@@ -38,6 +38,7 @@
         'views/doctor.xml',
         'report/patient_report.xml',
         'report/patient_report_xlsx.xml',
+        'report/Appointment_report.xml',
     ],
     'installable': True,
     'application': True,

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- QWeb Reports -->
+    <record id="Appointment_report" model="ir.actions.report">
+        <field name="name">Appointment Card</field>
+        <field name="model">hospital.appointment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hospital.report_Appointment</field>
+        <field name="report_file">om_hospital.report_Appointment</field>
+        <field name="print_report_name">'Appointment - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_hospital_appointment"/>
+        <field name="binding_type">report</field>
+
+    </record>
+
+
+    <!--    Report Template   -->
+    <template id="report_Appointment">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe-structure"/>
+                        <div class="row">
+                                <h2>Appointment Information</h2>
+                            </div>
+                        <div class="row">
+
+                            <div class="col-xs-10">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td width="40%">Reference code:</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="40%">Date:</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.date_appointment" widget="date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td w="40%">Check Up Time</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.date_checkup"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td w="40%">Description</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.note" widget="text"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                                <h2>Patient Information</h2>
+                            </div>
+                        <div class="row">
+
+                            <div class="col-xs-10">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td width="40%">Reference code:</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.patient_id.reference"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="40%">Age:</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.patient_id.age"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td w="40%">Gender</td>
+                                        <td width="60%">
+                                            <p class="text-left" t-field="o.patient_id.gender"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td w="40%">Image</td>
+                                        <td width="60%">
+                                            <p style="text-align: center; padding: 10px;">
+                                                <img t-if="not o.patient_id.patient_image"
+                                                     t-att-src="'/web/static/img/placeholder.png'"
+                                                     height="140"
+                                                     width="120"/>
+                                                <img t-if="o.patient_id.patient_image"
+                                                     t-att-src="'data:image/png;base64,%s' % to_text(o.patient_id.patient_image)"
+                                                     height="140" width="120" border="1"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        <t t-if="o.prescription_line_ids">
+                            <div class="row">
+                                <h2>prescription Information</h2>
+                                <br/>
+                            </div>
+                             <div class="row">
+
+                            <div class="col-xs-10">
+                                <table class="table table-bordered">
+                                  <thead>
+                                      <tr>
+                                          <th name="prescription_name" class="text-center"> Medicine</th>
+                                          <th name="prescription_qty" class="text-center"> QTY</th>
+                                      </tr>
+                                  </thead>
+                                    <t t-set="total_qty" t-value="0"/>
+                                    <t t-foreach="o.prescription_line_ids" t-as="line">
+                                        <t t-set="total_qty" t-value="total_qty + line.qty"/>
+                                        <tr>
+                                            <td>
+                                                <p t-field="line.name"></p>
+                                            </td>
+                                            <td>
+                                                <p t-field="line.qty"></p>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td>Total QTY </td>
+                                        <td>
+                                            <t t-esc="total_qty"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                        </t>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
