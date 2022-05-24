@@ -210,19 +210,5 @@
     </record>
 
 
-    <menuitem
-            id="hospital_root"
-            name="Hospital"
-            sequence="10"/>
-    <menuitem
-            id="hospital_patient_root"
-            name="Patients"
-            sequence="20"
-            parent="hospital_root"/>
-    <menuitem
-            id="hospital_patient"
-            name="Patients"
-            parent="hospital_patient_root"
-            sequence="10"
-            action="patient_action"/>
+
 </odoo>

@@ -164,14 +164,5 @@
             </p>
         </field>
     </record>
-    <menuitem
-            id="hospital_doctor_root"
-            name="Doctors"
-            sequence="40"
-            parent="hospital_root"/>
-    <menuitem
-            id="hospital_doctor"
-            name="Doctors"
-            parent="hospital_doctor_root"
-            action="action_hospital_doctor"/>
+
 </odoo>

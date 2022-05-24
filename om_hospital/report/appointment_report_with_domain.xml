@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+      <!-- QWeb Reports -->
+    <record id="Appointment_report_with_domain" model="ir.actions.report">
+        <field name="name">Appointments</field>
+        <field name="model">appointment.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hospital.Appointment_report_with_domain_template</field>
+        <field name="report_file">om_hospital.Appointment_report_with_domain_template</field>
+        <field name="print_report_name">'Appointment - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_appointment_report_wizard"/>
+        <field name="binding_type">report</field>
+
+    </record>
+
+
+    <template id="Appointment_report_with_domain_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <page>
+                    <div class="oe-structure"/>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <table>
+                                    <tr>
+                                        <td width="20%">
+                                            <strong>Patient</strong>
+                                        </td>
+                                         <td width="20%">
+                                            <strong>:</strong>
+                                        </td>
+                                        <td width="60%">
+                                            <t t-if="form_data.get('patient_id')">
+                                                <t t-esc="form_data['patient_id'][1]"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+
+
+                                     <tr>
+                                            <td width="20%">
+                                                <strong>Date From</strong>
+                                            </td>
+                                             <td width="20%">
+                                                <strong>:</strong>
+                                            </td>
+                                            <td width="60%">
+                                                <t t-if="form_data.get('date_from')">
+                                                    <t t-esc="form_data['date_from']"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+
+
+                                <tr>
+                                            <td width="20%">
+                                                <strong>Date To</strong>
+                                            </td>
+                                             <td width="20%">
+                                                <strong>:</strong>
+                                            </td>
+                                            <td width="60%">
+                                                <t t-if="form_data.get('date_to')">
+                                                    <t t-esc="form_data['date_to']"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <strong>Name</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Doctor</strong>
+                                    </th>
+                                     <th>
+                                        <strong>Patient Age</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <t t-foreach="appointments" t-as="line">
+                                <tr>
+                                    <td>
+                                        <t t-esc="line['name']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['doctor_id'][1]"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['age']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                        </div>
+                    </div>
+                </page>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -14,7 +14,7 @@ class CreateAppointmentWizard(models.TransientModel):
     @api.model
     def default_get(self, fields):
         result = super(CreateAppointmentWizard, self).default_get(fields)
-        if self._contex.get('active_id'):
+        if self._context.get('active_id'):
             result['patient_id'] = self._context.get('active_id')
         return result
 

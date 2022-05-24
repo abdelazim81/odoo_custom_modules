@@ -22,7 +22,7 @@
         <record id="create_appointment_action" model="ir.actions.act_window">
             <field name="name">Create New Appointment</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">create.appointment.wizard</field>
+            <field name="res_model">appointment.report.wizard</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="create_appointment_view_form"/>
             <field name="target">new</field>

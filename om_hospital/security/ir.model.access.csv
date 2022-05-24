@@ -5,3 +5,5 @@ access_hospital_doctor,access.hospital.doctor,model_hospital_doctor,,1,1,1,1
 access_hospital_create_appointment,access.hospital.create.appointment,model_create_appointment_wizard,,1,1,1,1
 access_search_appointment,access.search.appointment,model_search_appointment_wizard,,1,1,1,1
 access_appointment_prescription_lines,access.appointment.prescription.lines,model_appointment_prescription_lines,,1,1,1,1
+access_appointment_report,access.appointment.report,model_appointment_report_wizard,,1,1,1,1
+access_patient_wizard,access.patient.wizard,model_patient_wizard_report,,1,1,1,1

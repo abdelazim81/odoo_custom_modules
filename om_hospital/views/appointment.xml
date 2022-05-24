@@ -187,24 +187,5 @@
     </record>
 
 
-    <menuitem
-            id="hospital_appointment_root"
-            name="Appointments"
-            sequence="30"
-            parent="hospital_root"/>
-    <menuitem
-            id="hospital_appointment"
-            name="Appointments"
-            parent="hospital_appointment_root"
-            action="appointment_action"/>
-    <menuitem
-            id="hospital_create_appointment"
-            name="Create Appointment"
-            parent="hospital_appointment_root"
-            action="create_appointment_action"/>
-    <menuitem
-            id="hospital_search_appointment"
-            name="Search Appointment"
-            parent="hospital_appointment_root"
-            action="search_appointment_action"/>
+
 </odoo>
