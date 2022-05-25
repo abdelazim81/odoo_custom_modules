@@ -43,6 +43,7 @@
         'report/patient_report_xlsx.xml',
         'report/Appointment_report.xml',
         'report/appointment_report_with_domain.xml',
+        'report/patient_wizard_report.xml',
     ],
     'installable': True,
     'application': True,

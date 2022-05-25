@@ -15,4 +15,7 @@ class PatientWizard(models.TransientModel):
     )
 
     def action_create_patient_report(self):
-        return 0
+        data = {
+            "form_data": self.read()[0]
+        }
+        return self.env.ref('om_hospital.patient_wizard_report_action').report_action(self, data)
