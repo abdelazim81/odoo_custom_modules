@@ -77,14 +77,14 @@
                     <notebook>
                         <page string="Patient Info" name="notebook_page_patient">
                             <group>
-                                <field name="patient_id"/>
+                                <field name="patient_id" options="{'no_create':True}"/>
                                 <field name="age" readonly="1" force_save="1"/>
                                 <field name="gender" readonly="1" force_save="1"/>
                             </group>
                         </page>
                         <page string="Doctor Info" name="notebook_page_doctor">
                             <group>
-                                <field name="doctor_id"/>
+                                <field name="doctor_id" options="{'no_create_edit': True, 'no_open': True}"/>
                             </group>
                         </page>
                         <page string="Medicine" name="notebook_page_medicine">
